@@ -1,0 +1,73 @@
+<!-- Loading animation -->
+<ng-container *ngIf="!post; else loaded">
+  <div class="loading">
+    cargando...
+  </div>
+</ng-container>
+<!-- Loaded content -->
+<ng-template #loaded>
+  <div class="post-container">
+
+    <!-- Metadata of the post -->
+    <div class="post-meta-container">
+      <div class="post-meta" [ngClass]="{'no-image': !post?.imageUrl}">
+        <!-- Image -->
+        <img class="post-meta-image" [src]="post.imageUrl ? post.imageUrl: templateUrl" alt="Foto del post">
+        <!-- Content -->
+        <div class="post-meta-content">
+          <!-- Counts -->
+          <div class="post-meta-content-count">
+            <div class="post-meta-content-count-item">
+              <button
+                (click)="likePost()"
+                mat-button
+                matTooltipPosition="above"
+                matTooltip="¡Dale a like!"
+              >
+                <i class='bx bxs-heart' style="color: #dd4b4b;"></i>
+              </button>
+              <p>{{ post.likeCount }}</p>
+            </div>
+            <div class="post-meta-content-count-item">
+              <button
+                mat-button
+                matTooltipPosition="above"
+                matTooltip="Numero de visitas"
+              >
+                <i class='bx bxs-book-open' style="color: #4ab481;"></i>
+              </button>
+              <p>{{ post.readCount }}</p>
+            </div>
+            <div class="post-meta-content-count-item">
+              <button
+                (click)="toggleComments()"
+                mat-button
+                matTooltipPosition="above"
+                matTooltip="Ver comentarios"
+              >
+                <i class='bx bxs-comment' style="color: #59add1;"></i>
+              </button>
+              <p>{{ post.commentCount }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post content -->
+    <div class="post-text">
+
+      <ng-container *ngIf="!showComments; else comments">
+        <h4>{{ post.title }}</h4>
+        <p class="post-text-parraph" *ngFor="let text of post.text">{{ text }}</p>
+        <a style="display: block; margin-top: 20px; background-color: #00c8ff;" [routerLink]="['/']" mat-button>Volver al inicio</a>
+      </ng-container>
+
+      <ng-template #comments>
+        <app-comment></app-comment>
+        <a style="display: block; margin-top: 20px; background-color: #00c8ff;" [routerLink]="['/']" mat-button>Volver al inicio</a>
+      </ng-template>
+    </div>
+
+  </div>
+</ng-template>

@@ -1,0 +1,31 @@
+// Toolbar at the top of the app
+:host {
+  top: 0px;
+  width: 100%;
+  z-index: 1000;
+  display: block;
+  position: fixed;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 7px 0px #00000010;
+
+  // Conatiner of the page
+  .container {
+    // Material toolbar
+    .toolbar {
+      padding: 0px;
+      background-color: inherit;
+      height: 50px;
+      display: flex;
+      justify-content: space-between;
+
+      // Brand link to the home page
+      .brand {
+        // Brand image
+        &-image {
+          height: 20px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+<!--- Container of the page -->
+<div class="container">
+  <mat-toolbar class="toolbar">
+
+    <!-- Brand link with image -->
+    <button
+      class="brand"
+      mat-button
+      matTooltipShowDelay="1000"
+      matTooltipHideDelay="500"
+      matTooltip="Inicio"
+      [routerLink]="['/']"
+    >
+      Rey Writer
+    </button>
+
+    <!-- Funny icon -->
+    <i class='bx bx-pencil'></i>
+
+    <!-- Sign in modal -->
+    <app-signin></app-signin>
+
+  </mat-toolbar>
+</div>

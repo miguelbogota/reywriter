@@ -1,0 +1,119 @@
+:host {
+  display: block;
+  padding: 18px;
+
+  // Loading screen
+  .loading {
+    display: block;
+    padding: 50px;
+    text-align: center;
+    font-size: 1.3rem;
+    color: #878787;
+  }
+
+  // Loaded conten
+  .post-container {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: calc(60% - 18px) 40%;
+    box-sizing: border-box;
+    position: relative;
+    @media only screen and (max-width: 790px) {
+      grid-template-columns: 1fr;
+    }
+
+    // Meta information
+    .post-meta-container {
+      display: block;
+      width: 100%;
+      @media only screen and (max-width: 790px) {
+        height: 100%;
+      }
+      .post-meta {
+        width: inherit;
+        max-height: calc(100vh - 86px);
+        border-radius: 4px;
+        overflow: hidden;
+        position: sticky;
+        top: 68px;
+        @media only screen and (max-width: 790px) {
+          position: relative;
+          top: unset;
+        }
+        // Image
+        &-image {
+          display: block;
+          width: 100%;
+          transition: filter 0.06s linear;
+          filter: brightness(70%);
+        }
+        &.no-image {
+          height: 120px;
+        }
+
+        // Counts
+        &-content {
+          position: absolute;
+          top: 0px;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          align-items: center;
+          width: inherit;
+          height: 100%;
+          box-sizing: border-box;
+          padding: 20px;
+
+          &-count {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 20px 10px 0px;
+            text-align: center;
+            color: #656565;
+            &-item {
+              margin: 0px 14px;
+              button {
+                background-color: #dbdbdb;
+                padding: 10px 11px;
+                min-width: 0px;
+                line-height: 1rem;
+                color: inherit;
+                i {
+                  font-size: 1.2rem;
+                  color: inherit;
+                }
+              }
+              p {
+                color: #dbdbdb;
+                font-size: 1rem;
+                font-weight: 600;
+                margin-top: 6px;
+              }
+            }
+          }
+        }
+      }
+    }
+    // Content
+    .post-text {
+      text-align: justify;
+      box-sizing: border-box;
+      h4 {
+        margin-bottom: 18px;
+        font-size: 1.5rem;
+        padding: 10px 0px 0px;
+        font-weight: 500;
+      }
+      // Paragraphs
+      &-parraph {
+        font-weight: 300;
+        font-size: 1rem;
+        margin-bottom: 12px;
+        line-height: 1.23rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,84 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$reywriter-primary: mat-palette($mat-indigo);
+$reywriter-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$reywriter-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$reywriter-theme: mat-light-theme($reywriter-primary, $reywriter-accent, $reywriter-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($reywriter-theme);
+
+/* Defautls and reset */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, input, textarea, button, select, option {
+  margin: 0px;
+  padding: 0px;
+  border: none;
+  font-size: 100%;
+  outline: none;
+  font: inherit;
+  font-family: Roboto, 'Segoe UI', "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  text-decoration: none;
+  vertical-align: middle;
+  color: #333333;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul, li {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+
+/* Main styles for the app */
+html {
+  /* Toolbar height and margin to be see the content */
+  padding-top: 50px;
+  /* Minimun width the app can go */
+  min-width: 320px;
+  body {
+    background-color: #f9f9f9;
+    /* Max width to make a little smaller */
+    .container {
+      $max-width: 1020px; /* Max width the container will go to */
+      $margin: 14px; /* Margin to be apply with the screen is smaller */
+
+      max-width: $max-width;
+      margin: 0px auto;
+      /* Margin will be apply if the screen is lesser than the mex width */
+      @media only screen and (max-width: calc(#{$max-width} + calc(#{$margin} * 2))) {
+        margin: 0px $margin;
+      }
+    }
+  }
+}

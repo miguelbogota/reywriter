@@ -1,0 +1,115 @@
+:host {
+  display: block;
+
+  // Banner
+  .banner {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    text-align: center;
+    padding: 112px 18px 18px;
+    background-color: #fff;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 7px 0px #00000010;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    // Cover image
+    &::before {
+      z-index: 800;
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 210px;
+      background-image: var(--cover-url);
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    // Content
+    &-content {
+      z-index: 900;
+      margin: 0px auto;
+      max-width: 500px;
+      position: relative;
+      // Profile image
+      .profile-image {
+        max-width: 140px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+        background-color: #fff;
+        padding: 8px;
+        pointer-events: none;
+        user-select: none;
+      }
+      // Text data
+      .text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        h2 {
+          font-size: 1.48rem;
+          font-weight: 500;
+          margin-bottom: 10px;
+        }
+        p {
+          font-size: 0.94rem;
+          font-weight: 300;
+          line-height: 1.4rem;
+        }
+      }
+    }
+  }
+
+  // Quote
+  .quote {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    text-align: center;
+    padding: 18px;
+    background-color: #fff;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 7px 0px #00000010;
+    border-radius: 4px;
+    .text {
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1rem;
+      margin-bottom: 6px;
+    }
+    .author {
+      font-size: 0.87rem;
+      font-weight: 300;
+      line-height: 1rem;
+    }
+  }
+
+  // Content title
+  .content-title {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-top: 40px;
+    text-align: center;
+  }
+
+  // Content
+  .content {
+    width: 100%;
+    margin: 20px 0px 70px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 18px;
+    @media only screen and (max-width: 790px) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @media only screen and (max-width: 530px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}

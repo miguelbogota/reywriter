@@ -1,0 +1,17 @@
+<!--<a [routerLink]="['/post/' + post.id]">
+  <!-- Post link and title -->
+  <a class="post-link" [routerLink]="['/post/' + post.id]" mat-button>
+    <div class="post-link-content">
+      <h4 class="post-link-content-text">{{ post.title }}</h4>
+      <i class='bx bx-chevron-right post-link-content-icon'></i>
+    </div>
+  </a>
+  <!-- Image and date of the post -->
+  <div class="post-image">
+    <div class="post-image-content">
+      <img class="post-image-content-photo" [src]="post.imageUrl" alt="Foto del escrito" *ngIf="post.imageUrl" />
+      <div class="post-image-content-text" *ngIf="!post.imageUrl">{{ post.text[0] }}</div>
+      <p class="post-image-content-date">{{ post.createdAt.toDate() | date:'mediumDate' }}</p>
+    </div>
+  </div>
+<!--</a>-->
