@@ -3,6 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { PostService } from 'src/app/core/services/post.service';
 import { Post } from 'src/app/core/models/post.model';
 import { firestore } from 'firebase/app';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { SigninFormComponent } from '../../components/signin/signin.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-post',
@@ -11,6 +14,7 @@ import { firestore } from 'firebase/app';
 })
 export class PostComponent implements OnInit {
 
+  authState: any;
   postId: string;
   post: Post;
   templateUrl = 'https://specials-images.forbesimg.com/imageserve/5e3f2c88f133f400076bfbe2/960x0.jpg?fit=scale';
@@ -19,10 +23,34 @@ export class PostComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private postService: PostService
+    private postService: PostService,
+    private authService: AuthService,
+    public dialog: MatDialog
   ) {
     this.activatedRoute.paramMap.subscribe(u => {
       this.postId = u.get('postId');
+
+      this.authService.stateChanges
+        .subscribe((user: firebase.User) => {
+          if (user) {
+            this.authState = user;
+          }
+          if (user && (!localStorage.getItem('visited') || !localStorage.getItem('visited').includes(this.postId))) {
+            this.postService.setPost({
+              id: this.postId,
+              readCount: firestore.FieldValue.increment(1)
+            });
+          }
+          if (!localStorage.getItem('visited')) {
+            localStorage.setItem('visited', this.postId + ' ' + (localStorage.getItem('visited') ? localStorage.getItem('visited') : ''));
+            if (!localStorage.getItem('visited').includes(this.postId)) {
+              localStorage.setItem('visited', this.postId + ' ' + (localStorage.getItem('visited') ? localStorage.getItem('visited') : ''));
+            }
+          }
+          if (!localStorage.getItem('visited').includes(this.postId)) {
+            localStorage.setItem('visited', this.postId + ' ' + (localStorage.getItem('visited') ? localStorage.getItem('visited') : ''));
+          }
+        });
     });
   }
 
@@ -37,10 +65,15 @@ export class PostComponent implements OnInit {
   }
 
   likePost() {
-    this.postService.setPost({
-      id: this.postId,
-      likeCount: firestore.FieldValue.increment(1)
-    });
+    if (this.authState) {
+      this.postService.setPost({
+        id: this.postId,
+        likeCount: firestore.FieldValue.increment(1)
+      });
+    }
+    else {
+      this.dialog.open(SigninFormComponent);
+    }
   }
 
 }

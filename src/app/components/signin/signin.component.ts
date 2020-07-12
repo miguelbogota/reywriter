@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-signin',
@@ -8,7 +9,9 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class SigninComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
   }
@@ -23,5 +26,8 @@ export class SigninComponent implements OnInit {
   templateUrl: 'signin-form.html',
 })
 export class SigninFormComponent {
-  
+  constructor(public authService: AuthService) { }
+  public signIn() {
+    this.authService.signInWithGoogle();
+  }
 }
