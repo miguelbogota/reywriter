@@ -64,7 +64,8 @@
       </ng-container>
 
       <ng-template #comments>
-        <app-comment></app-comment>
+        <app-comment [create]="true"></app-comment>
+        <app-comment *ngFor="let comment of comments" [comment]="comment"></app-comment>
         <a style="display: block; margin-top: 20px; background-color: #00c8ff;" [routerLink]="['/']" mat-button>Volver al inicio</a>
       </ng-template>
     </div>

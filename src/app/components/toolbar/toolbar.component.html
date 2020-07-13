@@ -15,10 +15,22 @@
     </button>
 
     <!-- Funny icon -->
-    <i class='bx bx-pencil'></i>
+    <ng-container *ngIf="!isRei; else isRey">
+      <i class='bx bx-pencil'></i>
+    </ng-container>
+    <ng-template #isRey>
+      <button mat-button [routerLink]="['/create']" style="padding: 9px; line-height: 0px; min-width: 0px;">
+        <i class='bx bx-pencil' style="font-size: 20px;"></i>
+      </button>
+    </ng-template>
 
     <!-- Sign in modal -->
-    <app-signin></app-signin>
+    <ng-container *ngIf="!state; else signed">
+      <app-signin></app-signin>
+    </ng-container>
+    <ng-template #signed>
+      <button mat-button (click)="signOut()">Cerrar Sesión</button>
+    </ng-template>
 
   </mat-toolbar>
 </div>

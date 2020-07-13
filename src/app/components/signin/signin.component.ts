@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
@@ -26,8 +26,14 @@ export class SigninComponent implements OnInit {
   templateUrl: 'signin-form.html',
 })
 export class SigninFormComponent {
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService, private dialogRef: MatDialogRef<SigninFormComponent>) { }
   public signIn() {
-    this.authService.signInWithGoogle();
+    this.authService.signInWithGoogle()
+      .then(u => {
+        this.close();
+      });
+  }
+  public close() {
+    this.dialogRef.close();
   }
 }

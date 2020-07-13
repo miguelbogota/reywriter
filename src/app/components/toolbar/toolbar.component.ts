@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor() { }
+  state: any;
+  isRei = false;
+
+  constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
+    this.authService.stateChanges.subscribe((u: firebase.User) => {
+      this.state = null;
+      this.isRei = false;
+      if (u){
+        this.state = u;
+        if (u.email === 'miguel.bogota.mc.tpco@gmail.com') {
+          this.isRei = true;
+        }
+      }
+    });
+  }
+
+  signOut() {
+    this.authService.signOut();
   }
 
 }

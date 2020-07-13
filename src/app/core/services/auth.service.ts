@@ -19,4 +19,8 @@ export class AuthService {
   public signInWithGoogle() {
     return this.afa.signInWithPopup(new auth.GoogleAuthProvider());
   }
+
+  public signOut() {
+    return this.afa.signOut();
+  }
 }
