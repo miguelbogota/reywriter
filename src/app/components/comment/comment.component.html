@@ -1,1 +1,24 @@
-<p>comment works!</p>
+<!-- Create a comment place -->
+<ng-container *ngIf="create; else show">
+  <h5 class="comment-title">¡Deja tu comentario!</h5>
+  <textarea class="text-input" [(ngModel)]="commentText" placeholder="15 caracteres min."></textarea>
+  <div>
+    <P>Recuerda que no podrás modificar el comentario una vez lo comentes.</P>
+    <button class="button-comment" mat-button color="white" (click)="comentar()">Comentar</button>
+  </div>
+</ng-container>
+
+<!-- Show the comments -->
+<ng-template #show>
+  <div class="show-comment">
+    <img class="user-img" [src]="comment.img" alt="User photo" *ngIf="comment.img" />
+    <!-- User data and date -->
+    <div class="user-data">
+      <div class="date-section">
+        <h5 class="user-name">{{ comment.name }}</h5>
+        <div class="date-comment" *ngIf="comment.createdAt">{{ comment.createdAt.toDate() | date:'HH:mm - MMM dd, yy' }}</div>
+      </div>
+      <div class="comment-text">{{ comment.text }}</div>
+    </div>
+  </div>
+</ng-template>

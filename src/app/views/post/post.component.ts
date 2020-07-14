@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from 'src/app/core/services/post.service';
 import { Post } from 'src/app/core/models/post.model';
 import { Comment } from 'src/app/core/models/comment.model';
@@ -8,13 +8,14 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { SigninFormComponent } from '../../components/signin/signin.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalContentComponent } from 'src/app/components/modal/modal.component';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss']
 })
-export class PostComponent implements OnInit {
+export class PostComponent implements OnInit, OnDestroy {
 
   authState: any;
   postId: string;
@@ -22,16 +23,29 @@ export class PostComponent implements OnInit {
   templateUrl = 'https://specials-images.forbesimg.com/imageserve/5e3f2c88f133f400076bfbe2/960x0.jpg?fit=scale';
 
   showComments = false;
-  comments: Comment[];
+  commentsShow: Comment[] = new Array();
+
+  postChanges: Subscription;
+  commentsChanges: Subscription;
 
   constructor(
     private activatedRoute: ActivatedRoute,
+    private router: Router,
     private postService: PostService,
     private authService: AuthService,
     public dialog: MatDialog
   ) {
     this.activatedRoute.paramMap.subscribe(u => {
       this.postId = u.get('postId');
+
+      this.activatedRoute.queryParams.subscribe(u => {
+        this.showComments = u.showComments ? u.showComments : false;
+        if (this.showComments) {
+          this.commentsChanges = this.postService.getComments(this.postId).subscribe(c => {
+            this.commentsShow = c;
+          });
+        }
+      });
 
       this.authService.stateChanges
         .subscribe((user: firebase.User) => {
@@ -52,17 +66,26 @@ export class PostComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.postService.getPost(this.postId).subscribe(post => {
+    this.postChanges = this.postService.getPost(this.postId).subscribe(post => {
       this.post = post;
     });
   }
 
+  ngOnDestroy() {
+    if (this.postChanges) { this.postChanges.unsubscribe(); }
+    if (this.commentsChanges) { this.commentsChanges.unsubscribe(); }
+  }
+
   toggleComments() {
-    this.showComments = !this.showComments;
-    this.postService.getComments(this.postId).subscribe(c => {
-      this.comments = c;
-      console.log(c);
-    });
+    if (!this.showComments) {
+      this.router.navigate([`/post/${this.postId}`], { queryParams: { showComments: true }});
+      this.commentsChanges = this.postService.getComments(this.postId).subscribe(c => {
+        this.commentsShow = c;
+      });
+    }
+    else {
+      this.router.navigate([`/post/${this.postId}`]);
+    }
   }
 
   likePost() {

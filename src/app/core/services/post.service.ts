@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 import { Post } from '../models/post.model';
 import { Comment } from '../models/comment.model';
@@ -40,14 +40,11 @@ export class PostService {
       );
   }
 
-  public async setComment(postId: string, comment: any): Promise<void> {
-    const commentId = comment.id;
-    delete comment.uid;
+  public async setComment(postId: string, comment: any): Promise<DocumentReference> {
     return await this.afs.collection<Post>('posts')
       .doc(postId)
       .collection<Comment>('comments')
-      .doc(commentId)
-      .set(comment, { merge: true });
+      .add(comment);
   }
 
   public getComments(postId: string) {

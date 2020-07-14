@@ -1,0 +1,88 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  padding: 7px;
+  background-color: white;
+  border-radius: 4px;
+  border: 1px solid #e3e3e3;
+  margin-bottom: 15px;
+
+  // Add comment
+  .comment-title {
+    padding: 4px;
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .text-input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #e4e4e4;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    font-weight: 300;
+    resize: vertical;
+    margin-bottom: 3px;
+    height: 100px;
+  }
+  div {
+    display: flex;
+    flex-direction: column;
+    p {
+      display: block;
+      width: 100%;
+      font-size: 12px;
+      font-weight: 300;
+      margin-bottom: 8px;
+      text-align: left;
+    }
+    .button-comment {
+      background-color: #4ab481;
+      padding: 7px 12px;
+      min-width: 0px;
+      line-height: 16px;
+      margin: 0px 0px 0px auto;
+      color: white;
+    }
+  }
+
+  // Show comment section
+  .show-comment {
+    display: grid;
+    grid-template-columns: 38px 1fr;
+    .user-img {
+      width: 38px;
+      border-radius: 50%;
+    }
+    .user-data {
+      display: block;
+      padding: 7px 7px 7px 13px;
+      .date-section {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        margin-bottom: 10px;
+        .user-name {
+          text-align: left;
+          font-size: 14px;
+          font-weight: 500;
+          color: #181818;
+          display: inline-block;
+        }
+        .date-comment {
+          margin-left: auto;
+          display: inline-block;
+          font-size: 12px;
+          font-weight: 400;
+          color: #181818;
+          min-width: fit-content;
+          padding: 0px 0px 0px 4px;
+        }
+      }
+      .comment-text {
+        font-size: 16px;
+        font-weight: 300;
+      }
+    }
+  }
+}

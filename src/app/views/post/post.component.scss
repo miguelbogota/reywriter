@@ -1,6 +1,9 @@
 :host {
   display: block;
   padding: 18px;
+  @media only screen and (max-width: 790px) {
+    padding: 0px;
+  }
 
   // Loading screen
   .loading {

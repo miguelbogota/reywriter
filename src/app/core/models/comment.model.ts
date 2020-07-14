@@ -6,6 +6,7 @@ import { firestore } from 'firebase/app';
 export interface Comment {
   id: string;
   name: string;
+  img: string;
   text: string;
-  createdAt: firestore.FieldPath;
+  createdAt: any;
 }
