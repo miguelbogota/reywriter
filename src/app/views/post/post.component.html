@@ -60,14 +60,14 @@
       <ng-container *ngIf="!showComments; else comments">
         <h4>{{ post.title }}</h4>
         <p class="post-text-parraph" *ngFor="let text of post.text">{{ text }}</p>
-        <a style="display: block; margin-top: 20px; background-color: #00c8ff; color: white;" [routerLink]="['/']" mat-button>Volver al inicio</a>
+        <a style="display: block; margin: 20px 0px; background-color: #00c8ff; color: white;" [routerLink]="['/']" mat-button>Volver al inicio</a>
       </ng-container>
 
       <ng-template #comments>
         <app-comment [create]="true" [postId]="postId"></app-comment>
         <app-comment *ngFor="let comm of commentsShow" [comment]="comm"></app-comment>
 
-        <a style="display: block; margin-top: 20px; background-color: #00c8ff; color: white;" [routerLink]="['/']" mat-button>Volver al inicio</a>
+        <a style="display: block; margin: 20px 0px; background-color: #00c8ff; color: white;" [routerLink]="['/']" mat-button>Volver al inicio</a>
       </ng-template>
     </div>
 
