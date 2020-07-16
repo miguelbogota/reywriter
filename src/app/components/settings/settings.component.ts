@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
-import { FormBuilder, Validators } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-settings',
@@ -24,27 +25,40 @@ export class SettingsComponent implements OnInit {
   templateUrl: 'settings-form.html',
   styleUrls: ['./settings.component.scss']
 })
-export class SettingsFormComponent {
+export class SettingsFormComponent implements OnInit {
+
+  settingsForm: FormGroup;
+  loading = true;
 
   constructor(
-    private fb: FormBuilder
-  ) {}
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private dialogRef: MatDialogRef<SettingsFormComponent>
+  ) { }
 
-  // Settings form structure
-  settingsForm = this.fb.group({
-    title: ['', Validators.required],
-    about: ['', Validators.required],
-    photoUrl: ['', Validators.required],
-    coverUrl: ['', Validators.required],
-    quote: this.fb.group({
-      text: [''],
-      author: ['']
-    })
-  });
+  ngOnInit(): void {
+    this.auth.getData().subscribe(u => {
+      // Settings form structure
+      this.settingsForm = this.fb.group({
+        title: [u.title, Validators.required],
+        about: [u.about, Validators.required],
+        photoUrl: [u.photoUrl, Validators.required],
+        coverUrl: [u.coverUrl],
+        quote: this.fb.group({
+          text: [u.quote?.text],
+          author: [u.quote?.author]
+        })
+      });
+      this.loading = false;
+    });
+  }
 
   // Submit event for the form
   submit() {
-    console.log(this.settingsForm.value);
+    if (!this.settingsForm.invalid) {
+      this.auth.setData(this.settingsForm.value);
+      this.dialogRef.close();
+    }
   }
 
 }

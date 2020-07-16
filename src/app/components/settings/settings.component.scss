@@ -10,6 +10,15 @@
     width: calc(100vw - 10px);
     max-width: 400px;
 
+    // Loading screen
+    .loading {
+      display: block;
+      padding: 50px;
+      text-align: center;
+      font-size: 1.3rem;
+      color: #878787;
+    }
+
     .title-form {
       display: block;
       width: 100%;
@@ -26,7 +35,7 @@
 
       .full-width {
         width: 100%;
-        margin-bottom: 5px;
+        margin-bottom: 20px;
         .text-area {
           height: 100px;
         }

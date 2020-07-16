@@ -52,6 +52,10 @@
         background-color: #fff;
         padding: 8px;
         user-select: none;
+        cursor: pointer;
+        &:hover {
+          filter: brightness(85%);
+        }
       }
       // Text data
       .text {
