@@ -1,1 +1,61 @@
-Settings
+<!-- Form wrapper -->
+<div class="settings-form">
+
+  <h2 class="title-form">Configuración</h2>
+
+  <form [formGroup]="settingsForm" (ngSubmit)="submit()">
+
+    <mat-form-field class="full-width">
+      <mat-label>Titulo</mat-label>
+      <input matInput [formControl]="settingsForm.get('title')" autocomplete="off" />
+      <mat-hint>Titulo estará abajo de la foto!</mat-hint>
+      <mat-error *ngIf="settingsForm.get('title').hasError('required')">
+        Este campo es requerido
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Foto de Perfil URL</mat-label>
+      <input matInput [formControl]="settingsForm.get('photoUrl')" autocomplete="off" />
+      <mat-hint>Ingresa una URL a tu foto de perfil!</mat-hint>
+      <mat-error *ngIf="settingsForm.get('photoUrl').hasError('required')">
+        Este campo es requerido
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Foto de Cover URL</mat-label>
+      <input matInput [formControl]="settingsForm.get('coverUrl')" autocomplete="off" />
+      <mat-hint>Ingresa una URL a tu foto de cover!</mat-hint>
+      <mat-error *ngIf="settingsForm.get('coverUrl').hasError('required')">
+        Este campo es requerido
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Acerca</mat-label>
+      <textarea class="text-area" matInput [formControl]="settingsForm.get('about')" autocomplete="off"></textarea>
+      <mat-hint>Pequeña descripción acerca de tí!</mat-hint>
+      <mat-error *ngIf="settingsForm.get('about').hasError('required')">
+        Este campo es requerido
+      </mat-error>
+    </mat-form-field>
+
+    <h3 class="title-quote">La cita puede dejarse en blanco</h3>
+
+    <mat-form-field class="full-width">
+      <mat-label>Cita</mat-label>
+      <input matInput [formControl]="settingsForm.get('quote').get('text')" autocomplete="off" />
+      <mat-hint>No es necesario poner la cita entre comillas!</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Autor</mat-label>
+      <input matInput [formControl]="settingsForm.get('quote').get('author')" autocomplete="off" />
+      <mat-hint>Autor de la cita!</mat-hint>
+    </mat-form-field>
+
+    <button class="button-sub" mat-stroked-button type="submit">Guardar</button>
+
+  </form>
+</div>

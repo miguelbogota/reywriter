@@ -8,7 +8,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { SigninComponent, SigninFormComponent } from './signin/signin.component';
 import { CardComponent } from './card/card.component';
 import { CommentComponent } from './comment/comment.component';
-import { SettingsComponent } from './settings/settings.component';
+import { SettingsComponent, SettingsFormComponent } from './settings/settings.component';
 import { CropperComponent } from './cropper/cropper.component';
 import { ModalComponent, ModalContentComponent } from './modal/modal.component';
 
@@ -20,6 +20,7 @@ import { ModalComponent, ModalContentComponent } from './modal/modal.component';
     CardComponent,
     CommentComponent,
     SettingsComponent,
+    SettingsFormComponent,
     CropperComponent,
     ModalComponent,
     ModalContentComponent

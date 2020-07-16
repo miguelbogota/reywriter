@@ -1,7 +1,7 @@
 <!-- Top banner -->
 <div class="banner" [ngStyle]="{'padding': data.coverUrl ? '112px 18px 18px' : '18px'}">
   <div class="banner-content">
-    <img class="profile-image" [src]="data.photoUrl" />
+    <img class="profile-image" [src]="data.photoUrl" (click)="openSettings()" />
     <div class="text">
       <h2>{{ data.title }}</h2>
       <p>{{ data.about }}</p>

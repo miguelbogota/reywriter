@@ -1,0 +1,49 @@
+:host {
+  display: flex;
+  height: calc(100vh - 100px);
+  overflow: auto;
+  padding-right: 3px;
+
+  // Form
+  .settings-form {
+    display: block;
+    width: calc(100vw - 10px);
+    max-width: 400px;
+
+    .title-form {
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 400;
+      margin: 20px 0px 5px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      .full-width {
+        width: 100%;
+        margin-bottom: 5px;
+        .text-area {
+          height: 100px;
+        }
+      }
+
+      .button-sub {
+        margin-top: 20px;
+      }
+
+      .title-quote {
+        display: block;
+        width: 100%;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 300;
+        margin: 20px 0px 5px;
+      }
+    }
+  }
+}

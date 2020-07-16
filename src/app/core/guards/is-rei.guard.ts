@@ -15,7 +15,7 @@ export class IsReiGuard implements CanActivate {
     return this.auth.stateChanges
       .pipe(
         switchMap((u: firebase.User) => {
-          if (u) { return of(u.email === 'miguel.bogota.mc.tpco@gmail.com'); }
+          if (u) { return of(u.email === 'miguel.bogota.mc.tpco@gmail.com' || u.email === 'reyupel22@gmail.com'); }
           return of(false);
         })
       );
