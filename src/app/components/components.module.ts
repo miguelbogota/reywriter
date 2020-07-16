@@ -9,7 +9,6 @@ import { SigninComponent, SigninFormComponent } from './signin/signin.component'
 import { CardComponent } from './card/card.component';
 import { CommentComponent } from './comment/comment.component';
 import { SettingsComponent, SettingsFormComponent } from './settings/settings.component';
-import { CropperComponent } from './cropper/cropper.component';
 import { ModalComponent, ModalContentComponent } from './modal/modal.component';
 
 @NgModule({
@@ -21,7 +20,6 @@ import { ModalComponent, ModalContentComponent } from './modal/modal.component';
     CommentComponent,
     SettingsComponent,
     SettingsFormComponent,
-    CropperComponent,
     ModalComponent,
     ModalContentComponent
   ],
@@ -38,7 +36,6 @@ import { ModalComponent, ModalContentComponent } from './modal/modal.component';
     CardComponent,
     CommentComponent,
     SettingsComponent,
-    CropperComponent,
     ModalComponent
   ]
 })
