@@ -23,12 +23,12 @@ export class PostService {
 
   public getPosts() {
     return this.afs.collection<Post>('posts', ref => {
-      return ref.orderBy('createdAt', 'desc');
-    })
-    .snapshotChanges()
-    .pipe(
-      map(a => a.map(u => ({ id: u.payload.doc.id, ...u.payload.doc.data() as Post })))
-    );
+        return ref.orderBy('createdAt', 'desc');
+      })
+      .snapshotChanges()
+      .pipe(
+        map(a => a.map(u => ({ id: u.payload.doc.id, ...u.payload.doc.data() as Post })))
+      );
   }
 
   public getPost(postId: string) {

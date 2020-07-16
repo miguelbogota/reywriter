@@ -15,11 +15,7 @@ export class SettingsComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(SettingsFormComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+    this.dialog.open(SettingsFormComponent);
   }
 }
 

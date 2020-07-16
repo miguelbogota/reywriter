@@ -15,20 +15,13 @@ import { Subscription } from 'rxjs';
 export class HomeComponent implements OnInit, OnDestroy {
 
   posts: Post[];
+  postsLoaded = false;
+
   authS: any;
   authWatch: Subscription;
 
-  data: Settings = {
-    title: 'Híbrido Humorístico',
-    // tslint:disable-next-line: max-line-length
-    about: 'Bienvenidos al lugar donde el humor, la esperanza y la conciencia, tratan de estar juntas, en un buen rato. Talento Venezolano.',
-    photoUrl: 'https://images.unsplash.com/photo-1589730823931-07da2a7bf09c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80',
-    coverUrl: 'https://images.unsplash.com/photo-1450778869180-41d0601e046e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1150&q=80',
-    quote: {
-      text: 'La precisión...no es casualidad',
-      author: 'Enríque García'
-    }
-  };
+  data: Settings;
+  dataLoaded = false;
 
   constructor(
     private eRef: ElementRef,
@@ -38,17 +31,22 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    // Cover background
-    if (this.data && this.data.coverUrl) {
-      this.eRef.nativeElement.style.setProperty('--cover-url', `url('${this.data.coverUrl}')`);
-    }
     // Get the post from firestore
-    this.postService.getPosts()
-      .subscribe(u => {
-        this.posts = u;
-      });
+    this.postService.getPosts().subscribe(u => {
+      this.posts = u;
+      this.postsLoaded = true;
+    });
     // Get auth state
     this.authWatch = this.auth.stateChanges.subscribe(u => this.authS = u);
+    // Get data
+    this.auth.getData().subscribe(u => {
+      this.data = u;
+      this.dataLoaded = true;
+      // Cover background
+      if (this.data && this.data.coverUrl) {
+        this.eRef.nativeElement.style.setProperty('--cover-url', `url('${this.data.coverUrl}')`);
+      }
+    });
   }
 
   ngOnDestroy() {

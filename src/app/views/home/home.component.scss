@@ -1,6 +1,15 @@
 :host {
   display: block;
 
+  // Loading screen
+  .loading {
+    display: block;
+    padding: 50px;
+    text-align: center;
+    font-size: 1.3rem;
+    color: #878787;
+  }
+
   // Banner
   .banner {
     display: block;

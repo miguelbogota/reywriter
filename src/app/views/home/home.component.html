@@ -1,25 +1,40 @@
-<!-- Top banner -->
-<div class="banner" [ngStyle]="{'padding': data.coverUrl ? '112px 18px 18px' : '18px'}">
-  <div class="banner-content">
-    <img class="profile-image" [src]="data.photoUrl" (click)="openSettings()" />
-    <div class="text">
-      <h2>{{ data.title }}</h2>
-      <p>{{ data.about }}</p>
+<ng-container *ngIf="!dataLoaded; else loaded">
+  <div class="loading">
+    Cargando Datos...
+  </div>
+</ng-container>
+
+<ng-template #loaded>
+  <!-- Top banner -->
+  <div class="banner" [ngStyle]="{'padding': data.coverUrl ? '112px 18px 18px' : '18px'}">
+    <div class="banner-content">
+      <img class="profile-image" [src]="data.photoUrl" (click)="openSettings()" />
+      <div class="text">
+        <h2>{{ data.title }}</h2>
+        <p>{{ data.about }}</p>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Quote of the page -->
-<div class="quote" *ngIf="data.quote">
-  <p class="text">"{{ data.quote.text }}"</p>
-  <p class="author">— {{ data.quote.author }} —</p>
-</div>
+  <!-- Quote of the page -->
+  <div class="quote" *ngIf="data.quote">
+    <p class="text">"{{ data.quote.text }}"</p>
+    <p class="author">— {{ data.quote.author }} —</p>
+  </div>
 
-<h3 class="content-title">
-  Escritos & Textos
-</h3>
+  <h3 class="content-title">
+    Escritos & Textos
+  </h3>
 
-<!-- Content with all of the post -->
-<div class="content">
-  <app-card *ngFor="let post of posts" [post]="post"></app-card>
-</div>
+  <!-- Content with all of the post -->
+  <div class="content">
+    <ng-container *ngIf="!postsLoaded; else loadedPost">
+      <div class="loading">
+        Cargando Publicaciones...
+      </div>
+    </ng-container>
+    <ng-template #loadedPost>
+      <app-card *ngFor="let post of posts" [post]="post"></app-card>
+    </ng-template>
+  </div>
+</ng-template>
