@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { switchMap } from 'rxjs/operators';
@@ -15,7 +15,7 @@ export class IsReiGuard implements CanActivate {
     return this.auth.stateChanges
       .pipe(
         switchMap((u: firebase.User) => {
-          if (u) { return of(u.email === 'miguel.bogota.mc.tpco@gmail.com' || u.email === 'reyupel22@gmail.com'); }
+          if (u) { return of(u.email === 'miguelbogota.rico@gmail.com' || u.email === 'reyupel22@gmail.com'); }
           return of(false);
         })
       );

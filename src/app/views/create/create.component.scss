@@ -1,0 +1,33 @@
+:host {
+  display: block;
+  max-width: 600px;
+  margin: 20px auto;
+
+    // Loading screen
+    .loading {
+      display: block;
+      padding: 50px;
+      text-align: center;
+      font-size: 1.3rem;
+      color: #878787;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      .full-width {
+        width: 100%;
+        margin-bottom: 20px;
+        .text-area {
+          height: 100px;
+        }
+      }
+
+      .button-sub {
+        margin-top: 20px;
+      }
+    }
+
+}

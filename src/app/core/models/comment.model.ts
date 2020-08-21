@@ -1,5 +1,3 @@
-import { firestore } from 'firebase/app';
-
 /**
  * Post comment store in firestore
  */

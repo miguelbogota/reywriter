@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   openSettings() {
-    if (this.authS?.email === 'miguel.bogota.mc.tpco@gmail.com' || this.authS?.email === 'reyupel22@gmail.com') {
+    if (this.authS?.email === 'miguelbogota.rico@gmail.com' || this.authS?.email === 'reyupel22@gmail.com') {
       this.dialog.open(SettingsFormComponent);
     }
   }

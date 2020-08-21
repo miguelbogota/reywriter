@@ -1,1 +1,41 @@
-<p>create works!</p>
+<ng-container *ngIf="isLoading; else loaded">
+  <div class="loading">
+    Cargando...
+  </div>
+</ng-container>
+
+<ng-template #loaded>
+  <form [formGroup]="postForm" (ngSubmit)="uploadPost()">
+
+    <mat-form-field class="full-width">
+      <mat-label>Titulo</mat-label>
+      <input matInput [formControl]="title" autocomplete="off" />
+      <mat-error *ngIf="title.hasError('required')">
+        Este campo es requerido
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Url de la Imagen</mat-label>
+      <input matInput [formControl]="imageUrl" autocomplete="off" placeholder="https://" />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Texto</mat-label>
+      <textarea class="text-area" matInput [formControl]="text" autocomplete="off"></textarea>
+      <mat-error *ngIf="text.hasError('required')">
+        Este campo es requerido
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Tags</mat-label>
+      <input matInput [formControl]="tags" autocomplete="off" placeholder="Romance, Diversion..." />
+    </mat-form-field>
+
+    <button class="button-sub" mat-stroked-button type="submit">Guardar</button>
+
+    <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+  </form>
+</ng-template>

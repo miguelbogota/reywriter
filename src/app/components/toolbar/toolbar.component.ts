@@ -19,7 +19,7 @@ export class ToolbarComponent implements OnInit {
       this.isRei = false;
       if (u){
         this.state = u;
-        if (u.email === 'miguel.bogota.mc.tpco@gmail.com' || u.email === 'reyupel22@gmail.com') {
+        if (u.email === 'miguelbogota.rico@gmail.com' || u.email === 'reyupel22@gmail.com') {
           this.isRei = true;
         }
       }
